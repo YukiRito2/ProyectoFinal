@@ -59,10 +59,10 @@ const barChartData = {
 // Opciones para los gráficos
 const options = {
   responsive: true,
-  maintainAspectRatio: false, // Para ajustar dinámicamente el tamaño
+  maintainAspectRatio: false,
   plugins: {
     legend: {
-      position: "top",
+      position: "top" as const, // Casting para indicar que este valor es parte del tipo permitido
     },
     title: {
       display: true,
@@ -73,7 +73,7 @@ const options = {
 
 function Analytics() {
   return (
-    <div className="flex flex-col p-4 bg-gray-100 min-h-screen">
+    <div className="flex flex-col p-4 bg-gray-100 h-auto">
       <h1 className="text-2xl font-bold mb-4 text-gray-700 text-center">
         Análisis de Rendimiento Empresarial
       </h1>
@@ -85,7 +85,7 @@ function Analytics() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          style={{ height: "350px", width: "100%" }} // Ajuste de altura y ancho
+          style={{ height: "350px", width: "100%" }}
         >
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-gray-700 flex items-center">
@@ -101,7 +101,7 @@ function Analytics() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          style={{ height: "350px", width: "100%" }} // Ajuste de altura y ancho
+          style={{ height: "350px", width: "100%" }}
         >
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-gray-700 flex items-center">

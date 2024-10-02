@@ -81,32 +81,6 @@ function Sidebar() {
                 <FaProjectDiagram className="text-2xl" />
                 <span className="text-lg">Más opciones</span>
               </Menu.Button>
-              <Menu.Items className="flex flex-col mt-2 space-y-2 bg-gray-700 rounded shadow-lg">
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link
-                      to="/opcion1"
-                      className={`p-2 text-white text-sm ${
-                        active ? "bg-blue-500" : "bg-gray-700"
-                      }`}
-                    >
-                      Opción 1
-                    </Link>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link
-                      to="/opcion2"
-                      className={`p-2 text-white text-sm ${
-                        active ? "bg-blue-500" : "bg-gray-700"
-                      }`}
-                    >
-                      Opción 2
-                    </Link>
-                  )}
-                </Menu.Item>
-              </Menu.Items>
             </Menu>
           </li>
 
