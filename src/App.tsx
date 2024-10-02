@@ -9,6 +9,7 @@ import Navbar from "./app/components/UI/Navbar";
 import Sidebar from "./app/components/UI/Sidebar";
 import Analytics from "./app/components/Analytics/Analytics"; // Importa la nueva vista
 import CalendarPage from "./app/components/Calendar/CalendarPage"; // Importa la nueva vista
+import Settings from "./app/components/Settings/Settings";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path="/chat" element={<ChatBox />} />
               <Route path="/analytics" element={<Analytics />} />{" "}
               <Route path="/calendar" element={<CalendarPage />} />{" "}
+              <Route path="/Settings" element={<Settings />} />{" "}
             </Routes>
           </div>
         </div>
