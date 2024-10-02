@@ -138,10 +138,10 @@ function Sidebar() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 to="/analytics"
-                className="flex items-center space-x-4 text-blue-400 hover:text-blue-300 transition-all duration-200"
+                className="flex items-center space-x-4 text-blue-400 hover:text-blue-300"
               >
                 <FaChartPie className="text-2xl" />
-                <span className="text-lg">Analíticas</span>
+                <span className="text-lg">Analítica</span>
               </Link>
             </motion.div>
           </li>

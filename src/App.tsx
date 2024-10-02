@@ -7,6 +7,7 @@ import ProjectList from "./app/components/Projects/ProjectList";
 import ChatBox from "./app/components/Chat/ChatBox";
 import Navbar from "./app/components/UI/Navbar";
 import Sidebar from "./app/components/UI/Sidebar";
+import Analytics from "./app/components/Analytics/Analytics"; // Importa la nueva vista
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
               <Route path="/documents" element={<DocumentsList />} />
               <Route path="/projects" element={<ProjectList />} />
               <Route path="/chat" element={<ChatBox />} />
+              <Route path="/analytics" element={<Analytics />} />{" "}
+              {/* Nueva ruta */}
             </Routes>
           </div>
         </div>
