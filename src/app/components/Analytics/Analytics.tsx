@@ -1,4 +1,4 @@
-import { Line, Bar } from "react-chartjs-2";
+import { Line, Bar, Pie, Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -6,12 +6,18 @@ import {
   PointElement,
   LineElement,
   BarElement,
+  ArcElement,
   Title,
   Tooltip,
   Legend,
 } from "chart.js";
 import { motion } from "framer-motion";
-import { FaChartLine, FaChartBar } from "react-icons/fa";
+import {
+  FaChartLine,
+  FaChartBar,
+  FaChartPie,
+  FaChartArea,
+} from "react-icons/fa";
 
 // Registrar componentes de Chart.js
 ChartJS.register(
@@ -20,6 +26,7 @@ ChartJS.register(
   PointElement,
   LineElement,
   BarElement,
+  ArcElement,
   Title,
   Tooltip,
   Legend
@@ -31,7 +38,7 @@ const lineChartData = {
   datasets: [
     {
       label: "Crecimiento de Ventas",
-      data: [10000, 15000, 12000, 17000, 20000, 22000, 25000], // Datos ficticios de ventas
+      data: [10000, 15000, 12000, 17000, 20000, 22000, 25000],
       borderColor: "rgba(75, 192, 192, 1)",
       backgroundColor: "rgba(75, 192, 192, 0.2)",
       tension: 0.1,
@@ -45,13 +52,47 @@ const barChartData = {
   datasets: [
     {
       label: "Tareas Completadas",
-      data: [50, 70, 45, 80, 60], // Rendimiento de empleados en tareas completadas
+      data: [50, 70, 45, 80, 60],
       backgroundColor: "rgba(54, 162, 235, 0.6)",
     },
     {
       label: "Tareas Pendientes",
-      data: [10, 5, 15, 3, 8], // Tareas pendientes
+      data: [10, 5, 15, 3, 8],
       backgroundColor: "rgba(255, 99, 132, 0.6)",
+    },
+  ],
+};
+
+// Datos para gráfico de torta (Distribución de Ventas)
+const pieChartData = {
+  labels: ["Producto A", "Producto B", "Producto C", "Producto D"],
+  datasets: [
+    {
+      label: "Ventas por Producto",
+      data: [300, 150, 200, 100],
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.6)",
+        "rgba(54, 162, 235, 0.6)",
+        "rgba(75, 192, 192, 0.6)",
+        "rgba(255, 206, 86, 0.6)",
+      ],
+    },
+  ],
+};
+
+// Datos para gráfico de donut (Satisfacción de Clientes)
+const doughnutChartData = {
+  labels: ["Muy Satisfechos", "Satisfechos", "Neutral", "Insatisfechos"],
+  datasets: [
+    {
+      label: "Satisfacción de Clientes",
+      data: [65, 25, 7, 3],
+      backgroundColor: [
+        "rgba(75, 192, 192, 0.6)",
+        "rgba(54, 162, 235, 0.6)",
+        "rgba(255, 206, 86, 0.6)",
+        "rgba(255, 99, 132, 0.6)",
+      ],
     },
   ],
 };
@@ -62,7 +103,7 @@ const options = {
   maintainAspectRatio: false,
   plugins: {
     legend: {
-      position: "top" as const, // Casting para indicar que este valor es parte del tipo permitido
+      position: "top" as const,
     },
     title: {
       display: true,
@@ -78,14 +119,16 @@ function Analytics() {
         Análisis de Rendimiento Empresarial
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {" "}
+        {/* Ajuste de la cuadrícula con más espacio */}
         {/* Gráfico de Línea - Crecimiento de Ventas */}
         <motion.div
-          className="bg-white p-4 rounded-lg shadow-lg"
+          className="bg-white p-6 rounded-lg shadow-lg"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          style={{ height: "350px", width: "100%" }}
+          style={{ height: "350px", width: "100%" }} // Aumento del tamaño a 400px
         >
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-gray-700 flex items-center">
@@ -94,14 +137,13 @@ function Analytics() {
           </div>
           <Line data={lineChartData} options={options} />
         </motion.div>
-
         {/* Gráfico de Barras - Rendimiento de Empleados */}
         <motion.div
-          className="bg-white p-4 rounded-lg shadow-lg"
+          className="bg-white p-6 rounded-lg shadow-lg"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          style={{ height: "350px", width: "100%" }}
+          style={{ height: "350px", width: "100%" }} // Aumento del tamaño a 400px
         >
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-gray-700 flex items-center">
@@ -109,6 +151,37 @@ function Analytics() {
             </h2>
           </div>
           <Bar data={barChartData} options={options} />
+        </motion.div>
+        {/* Gráfico de Torta - Distribución de Ventas */}
+        <motion.div
+          className="bg-white p-10 rounded-lg shadow-lg"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          style={{ height: "380px", width: "90%" }} // Aumento del tamaño a 400px
+        >
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-lg font-semibold text-gray-700 flex items-center">
+              <FaChartPie className="mr-2" /> Distribución de Ventas por
+              Producto
+            </h2>
+          </div>
+          <Pie data={pieChartData} options={options} />
+        </motion.div>
+        {/* Gráfico de Donut - Satisfacción de Clientes */}
+        <motion.div
+          className="bg-white p-10 rounded-lg shadow-lg"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          style={{ height: "380px", width: "90%" }} // Aumento del tamaño a 400px
+        >
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-lg font-semibold text-gray-700 flex items-center">
+              <FaChartArea className="mr-2" /> Satisfacción de Clientes
+            </h2>
+          </div>
+          <Doughnut data={doughnutChartData} options={options} />
         </motion.div>
       </div>
     </div>
